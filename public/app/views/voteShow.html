@@ -1,0 +1,22 @@
+<h2>Vote on: Taco Night</h2>
+<div class="well">
+    <p>Event time:</p>
+    <p>vote ends at:</p>
+</div>
+<form class="well">
+    <label>Will you be attending?</label>
+    <select>
+        <option>Yes</option>
+        <!--if yes, add user to event collection-->
+        <option>No</option>
+        <!-- if no, grey out rest of form and delete user from event collection -->
+    </select>
+</form>
+<h3>Choices</h3>
+<form class="well">
+    <input type="radio" name="choice" value="Tacos Chukis">Tacos Chukis
+    <br>
+    <input type="text" name="newChoice" value="Add a new choice">
+    <button class="btn btn-primary">Add Choice</button>
+</form>
+<a href="event/1">Show chosen event after polling ends</a>
