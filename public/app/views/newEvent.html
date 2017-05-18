@@ -15,22 +15,22 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form> -->
 <h2>Create Event</h2>
-<form>
+<form ng-submit="createEvent()">
     <div class="form-group">
         <label>Name of Event:</label>
-        <input class="form-control" type="text" name="name">
+        <input class="form-control" type="text" name="name" ng-model="event.type">
     </div>
     <div class="form-group">
         <label>Event Time:</label>
-        <input class="form-control" type="datetime-local" name="eventTime">
+        <input class="form-control" type="datetime-local" name="eventTime" ng-model="event.startTime">
     </div>
     <div class="form-group">
         <label>Vote Ends At:</label>
-        <input class="form-control" type="datetime-local" name="endTime">
+        <input class="form-control" type="datetime-local" name="endTime" ng-model="event.voteEndTime">
     </div>
     <div class="form-group">
         <label>Your Choice:</label>
-        <input class="form-control" type="text" name="choice">
+        <input class="form-control" type="text" name="choice" ng-model="event.choices.title">
     </div>
     <input class="btn btn-primary" type="submit" value="Create Event">
 </form>
