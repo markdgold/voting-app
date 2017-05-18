@@ -2,8 +2,14 @@ var mongoose = require('mongooose');
 var Schema = mongoose.Schema;
 
 var GroupsSchema = mongoose.Schema({
-    Name: String,
-    Users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    Name: {
+        type: String,
+        required: true
+    },
+    Users: [{
+        id: { type: Schema.Types.ObjectId, ref: 'User' },
+        votes: Number
+    }],
     activities: [{ type: Schema.Types.ObjectId, ref: 'Activities' }]
 });
 

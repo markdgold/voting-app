@@ -22,7 +22,8 @@ var UserSchema = mongoose.Schema({
         name: String,
         img: String
     }],
-    userGroups: [{ type: Schema.Types.ObjectId, ref: 'Groups' }]
+    userGroups: [{ type: Schema.Types.ObjectId, ref: 'Groups' }],
+    userActivities: [{ type: Schema.Types.ObjectId, ref: 'Activities' }]
 });
 
 UserSchema.set('toJSON', {
@@ -44,7 +45,7 @@ UserSchema.methods.authenticated = function(password, callback) {
             callback(null, res ? this : false);
         }
     });
-}
+};
 
 UserSchema.pre('save', function(next) {
     if (!this.isModified('password')) {
