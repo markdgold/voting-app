@@ -1,0 +1,37 @@
+<!-- <h1>New Item</h1>
+<form ng-submit="createItem()">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" ng-model="item.title">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" ng-model="item.description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">Image Link</label>
+        <input type="url" class="form-control" id="image" placeholder="" ng-model="item.image">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
+<h2>Create Event</h2>
+<form>
+    <div class="form-group">
+        <label>Name of Event:</label>
+        <input class="form-control" type="text" name="name">
+    </div>
+    <div class="form-group">
+        <label>Event Time:</label>
+        <input class="form-control" type="datetime-local" name="eventTime">
+    </div>
+    <div class="form-group">
+        <label>Vote Ends At:</label>
+        <input class="form-control" type="datetime-local" name="endTime">
+    </div>
+    <div class="form-group">
+        <label>Your Choice:</label>
+        <input class="form-control" type="text" name="choice">
+    </div>
+    <input class="btn btn-primary" type="submit" value="Create Event">
+</form>
+<a class="btn btn-primary" href="vote/1">Create Event</a>
