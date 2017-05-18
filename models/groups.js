@@ -8,9 +8,10 @@ var GroupsSchema = mongoose.Schema({
     },
     Users: [{
         id: { type: Schema.Types.ObjectId, ref: 'User' },
-        votes: Number
+        votes: Number,
+        owner: Boolean
     }],
-    activities: [{ type: Schema.Types.ObjectId, ref: 'Activities' }]
+    activities: [{ type: Schema.Types.ObjectId, ref: 'Events' }]
 });
 
 module.exports = mongoose.model('Groups', GroupsSchema);

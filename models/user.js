@@ -23,7 +23,7 @@ var UserSchema = mongoose.Schema({
         img: String
     }],
     userGroups: [{ type: Schema.Types.ObjectId, ref: 'Groups' }],
-    userActivities: [{ type: Schema.Types.ObjectId, ref: 'Activities' }]
+    userEvents: [{ type: Schema.Types.ObjectId, ref: 'Events' }]
 });
 
 UserSchema.set('toJSON', {
