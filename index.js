@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/users', expressJWT({ secret: secret })
     .unless({ path: ['/api/users'], method: 'POST' }));
-app.use('/api/groups', expressJWT({ secret: secret }));
-app.use('/api/events', expressJWT({ secret: secret }));
+//app.use('/api/groups', expressJWT({ secret: secret }));
+//app.use('/api/events', expressJWT({ secret: secret }));
 
 app.use(function(err, req, res, next) {
     if (err.name === 'UnauthorizedError') {

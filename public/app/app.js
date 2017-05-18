@@ -16,8 +16,8 @@ app.config([
             })
             .state('newGroup', {
                 url: '/group/new',
-                templateUrl: 'app/views/newGroup.html'
-                    // ,                controller: 'NewGroupCtrl'
+                templateUrl: 'app/views/newGroup.html',
+                controller: 'NewGroupCtrl'
             })
             .state('groupShow', {
                 url: '/group/:id',
@@ -30,8 +30,8 @@ app.config([
             })
             .state('newEvent', {
                 url: '/event/new',
-                templateUrl: 'app/views/newEvent.html'
-                    // ,                controller: 'NewEventCtrl'
+                templateUrl: 'app/views/newEvent.html',
+                controller: 'NewEventCtrl'
             })
             .state('votes', {
                 url: '/votes',

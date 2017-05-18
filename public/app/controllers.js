@@ -1,4 +1,4 @@
-angular.module('MainCtrls', ['EventServices'])
+angular.module('MainCtrls', ['MainServices'])
     .controller('HomeCtrl', ['$scope', 'Item', function($scope, Item) {
         $scope.items = [];
 
@@ -93,4 +93,55 @@ angular.module('MainCtrls', ['EventServices'])
     }])
     .controller('AlertCtrl', ['$scope', 'Alerts', function($scope, Alerts) {
         $scope.Alerts = Alerts;
-    }]);
+    }])
+    .controller('NewEventCtrl', ['$scope', '$location', 'Event', 'Alerts', function($scope, $location, Event, Alerts) {
+        console.log('in NewEventCtrl')
+        $scope.event = {
+
+        };
+
+        $scope.createEvent = function() {
+            Event.save($scope.event, function success(data) {
+                $location.path('/');
+            }, function error(data) {
+                Alerts.add('danger', 'You must be logged in to add')
+                console.log(data);
+            });
+        };
+    }])
+    .controller('EventCtrl', ['$scope', '$stateParams', 'Event', function($scope, $stateParams, Event) {
+        $scope.event = {};
+
+        Event.get({ id: $stateParams.id }, function success(data) {
+            $scope.event = data;
+        }, function error(data) {
+            console.log(data);
+        });
+    }])
+    .controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
+        console.log('in NewGroupCtrl');
+        $scope.group = {
+            name: '',
+            description: '',
+            image: ''
+        };
+
+        $scope.createGroup = function() {
+            Group.save($scope.group, function success(data) {
+                $location.path('/');
+            }, function error(data) {
+                Alerts.add('danger', 'You must be logged in to add')
+                console.log(data);
+            });
+        };
+    }])
+
+.controller('GroupCtrl', ['$scope', '$stateParams', 'Group', function($scope, $stateParams, Group) {
+    $scope.group = {};
+
+    Group.get({ id: $stateParams.id }, function success(data) {
+        $scope.group = data;
+    }, function error(data) {
+        console.log(data);
+    });
+}]);
