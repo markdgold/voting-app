@@ -11,28 +11,50 @@ app.config([
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'app/views/items.html',
-                controller: 'HomeCtrl'
+                templateUrl: 'app/views/groups.html'
+                    //,controller: 'GroupCtrl'
             })
-            .state('newItem', {
-                url: '/items/new',
-                templateUrl: 'app/views/newItem.html',
-                controller: 'NewCtrl'
+            .state('groupShow', {
+                url: '/group/:id',
+                templateUrl: 'app/views/groupShow.html'
+                    //,controller: 'GroupShowCtrl'
             })
-            .state('itemShow', {
-                url: '/items/:id',
-                templateUrl: 'app/views/showItem.html',
-                controller: 'ShowCtrl'
+            .state('newGroup', {
+                url: '/group/new',
+                templateUrl: 'app/views/newGroup.html'
+                    // ,                controller: 'NewGroupCtrl'
+            })
+            .state('newEvent', {
+                url: '/event/new',
+                templateUrl: 'app/views/newEvent.html'
+                    // ,                controller: 'NewEventCtrl'
+            })
+            .state('votes', {
+                url: '/votes',
+                templateUrl: 'app/views/votes.html'
+            })
+            .state('voteShow', {
+                url: '/vote/:id',
+                templateUrl: 'app/views/voteShow.html'
+            })
+            .state('eventShow', {
+                url: '/event/:id',
+                templateUrl: 'app/views/eventShow.html'
+                    // ,                controller: 'EventShowCtrl'
             })
             .state('signup', {
                 url: '/signup',
-                templateUrl: 'app/views/userSignup.html',
-                controller: 'SignupCtrl'
+                templateUrl: 'app/views/userSignup.html'
+                    // ,                controller: 'SignupCtrl'
             })
             .state('login', {
                 url: '/login',
-                templateUrl: 'app/views/userLogin.html',
-                controller: 'LoginCtrl'
+                templateUrl: 'app/views/userLogin.html'
+                    // ,                controller: 'LoginCtrl'
+            })
+            .state('profile', {
+                url: '/profile',
+                templateUrl: 'app/views/profile.html'
             })
             .state('404', {
                 url: '/404',

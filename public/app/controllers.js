@@ -48,7 +48,7 @@ angular.module('MainCtrls', ['ItemServices'])
             Auth.removeToken();
             Alerts.add('success', 'Logged out!');
             $state.reload();
-        }
+        };
     }])
     .controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', 'Alerts', function($scope, $http, $location, Auth, Alerts) {
         $scope.user = {
