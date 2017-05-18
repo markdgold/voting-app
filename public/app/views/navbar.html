@@ -14,6 +14,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/signup" ng-hide="Auth.isLoggedIn()">Signup</a></li>
             <li><a href="/login" ng-hide="Auth.isLoggedIn()">Login</a></li>
+            <li><a ui-sref="profile" ng-show="Auth.isLoggedIn()">Profile</a></li>
             <li><a ng-click="logout()" ng-show="Auth.isLoggedIn()">Logout</a></li>
         </ul>
     </div>

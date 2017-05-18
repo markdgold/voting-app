@@ -14,13 +14,24 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form> -->
-<p>
-    List events to choose from
-</p>
-<p>
-    Food...
-</p>
-<p>
-    music...
-</p>
-<a href="vote/1">Create Vote</a>
+<h2>Create Event</h2>
+<form>
+    <div class="form-group">
+        <label>Name of Event:</label>
+        <input class="form-control" type="text" name="name">
+    </div>
+    <div class="form-group">
+        <label>Event Time:</label>
+        <input class="form-control" type="datetime-local" name="eventTime">
+    </div>
+    <div class="form-group">
+        <label>Vote Ends At:</label>
+        <input class="form-control" type="datetime-local" name="endTime">
+    </div>
+    <div class="form-group">
+        <label>Your Choice:</label>
+        <input class="form-control" type="text" name="choice">
+    </div>
+    <input class="btn btn-primary" type="submit" value="Create Event">
+</form>
+<a class="btn btn-primary" href="vote/1">Create Event</a>

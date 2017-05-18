@@ -1,4 +1,4 @@
-angular.module('MainCtrls', ['ItemServices'])
+angular.module('MainCtrls', ['EventServices'])
     .controller('HomeCtrl', ['$scope', 'Item', function($scope, Item) {
         $scope.items = [];
 
