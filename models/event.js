@@ -6,22 +6,22 @@ var EventsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    choices: [{
+    choices: {
         title: String,
         counter: Number,
-        currentVotes: [{
+        currentVotes: {
             id: { type: Schema.Types.ObjectId, ref: 'User' },
             votesSpent: Number,
-        }]
-    }],
+        }
+    },
     startTime: String,
     voteEndTime: Date,
     chosenActivity: String,
     active: Boolean,
-    users: [{
+    users: {
         id: { type: Schema.Types.ObjectId, ref: 'User' },
         votes: Number
-    }],
+    },
 
 });
 

@@ -64,9 +64,9 @@ angular.module('MainCtrls', ['EventServices'])
                     console.log(res);
                 });
             $http.post('/api/auth', $scope.user).then(function success(res) {
-                Auth.saveToken(res.data.token);
+                Auth.saveToken(res.data);
                 Alerts.add('success', 'Signed up & Logged in!');
-                console.log('Token:', res.data.token);
+                console.log('Token:', res.data);
                 $location.path('/');
             }, function error(res) {
                 Alerts.add('danger', 'Incorrect email/password');
@@ -81,9 +81,9 @@ angular.module('MainCtrls', ['EventServices'])
         };
         $scope.userLogin = function() {
             $http.post('/api/auth', $scope.user).then(function success(res) {
-                Auth.saveToken(res.data.token);
+                Auth.saveToken(res.data);
                 Alerts.add('success', 'Logged in!');
-                console.log('Token:', res.data.token);
+                console.log('Token:', res.data);
                 $location.path('/');
             }, function error(res) {
                 Alerts.add('danger', 'Incorrect email/password');
