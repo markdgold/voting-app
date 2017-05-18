@@ -22,7 +22,7 @@ app.use('/api/events', expressJWT({ secret: secret }));
 
 app.use(function(err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
-        res.status(401).send({ message: 'You need an authorization token to view this information.' })
+        res.status(401).send({ message: 'You need an authorization token to view this information.' });
     }
 });
 

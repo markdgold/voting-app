@@ -1,7 +1,11 @@
-angular.module('ItemServices', ['ngResource'])
-    .factory('Item', ['$resource', function($resource) {
-        return $resource('/api/items/:id');
+angular.module('EventServices', ['ngResource'])
+    .factory('Event', ['$resource', function($resource) {
+        return $resource('/api/events/:id');
     }])
+
+.factory('Group', ['$resource'], function($resource) {
+    return $resource('/api/groups/:id');
+})
 
 .factory('Auth', ['$window', function($window) {
     return {
