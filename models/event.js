@@ -18,7 +18,7 @@ var EventsSchema = mongoose.Schema({
     voteEndTime: Date,
     chosenActivity: String,
     active: Boolean,
-    Users: [{
+    users: [{
         id: { type: Schema.Types.ObjectId, ref: 'User' },
         votes: Number
     }],
@@ -26,4 +26,4 @@ var EventsSchema = mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('Events', EventsSchema);
+module.exports = mongoose.model('Event', EventsSchema);

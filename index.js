@@ -9,15 +9,16 @@ var secret = process.env.JWT_SECRET;
 
 var mongoose = require('mongoose');
 var User = require('./models/user');
-mongoose.connect('mongodb://localhost/items'); //change to db want to use
+mongoose.connect('mongodb://localhost/devDb'); //change to db want to use
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/items', expressJWT({ secret: secret }));
 app.use('/api/users', expressJWT({ secret: secret })
-    .unless({ path: ['/api/users'], method: 'post' }));
+    .unless({ path: ['/api/users'], method: 'POST' }));
+app.use('/api/groups', expressJWT({ secret: secret }));
+app.use('/api/events', expressJWT({ secret: secret }));
 
 app.use(function(err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
@@ -25,7 +26,8 @@ app.use(function(err, req, res, next) {
     }
 });
 
-app.use('/api/items', require('./controllers/items'));
+app.use('/api/events', require('./controllers/events'));
+app.use('/api/groups', require('./controllers/groups'));
 app.use('/api/users', require('./controllers/users'));
 
 app.post('/api/auth', function(req, res) {
@@ -34,8 +36,8 @@ app.post('/api/auth', function(req, res) {
         user.authenticated(req.body.password, function(err, result) {
             if (err || !result) return res.status(401).send({ message: 'User not authenticated' });
 
-            var token = jwt.sign(user, secret);
-            res.send({ user: user, token: token });
+            var token = jwt.sign(JSON.stringify(user), secret);
+            res.send(token);
         });
     });
 });
