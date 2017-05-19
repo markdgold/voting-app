@@ -1,5 +1,6 @@
 var express = require('express');
 var Group = require('../models/group');
+var User = require('../models/user');
 var router = express.Router();
 
 router.route('/')
@@ -16,8 +17,22 @@ router.route('/')
 
 // Route to create a new Group
 .post(function(req, res) {
-    Group.create(req.body, function(err, group) {
+    var userId = req.user.id;
+    var groupName = req.body.name;
+
+    Group.create({
+        name: groupName,
+        users: {
+            id: userId,
+            votes: 100,
+            owner: true,
+        }
+    }, function(err, group) {
         if (err) return res.status(500).send(err);
+
+        User.findByIdAndUpdate(userId, { userGroups: [group._id] }, function(err) {
+            if (err) return res.status(500).send(err);
+        });
         res.send(group);
     });
 });
