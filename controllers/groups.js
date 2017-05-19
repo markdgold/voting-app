@@ -1,5 +1,6 @@
 var express = require('express');
 var Group = require('../models/group');
+var EventDb = require('../models/event');
 var router = express.Router();
 
 router.route('/')

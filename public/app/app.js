@@ -41,7 +41,11 @@ app.config([
             .state('voteShow', {
                 url: '/vote/:id',
                 templateUrl: 'app/views/voteShow.html',
-                //, controller: VoteShowCtrl
+                controller: 'VoteShowCtrl'
+            })
+            .state('newVoteShow', {
+                url: '/newVote',
+                templateUrl: 'app/views/newVote.html'
             })
             .state('eventShow', {
                 url: '/event/:id',

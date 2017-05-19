@@ -1,8 +1,12 @@
 <h1>Vote?</h1>
-<h2>Your Groups</h2>
-<div class="well" ng-repeat="group in groups">
-    <a href="group/{{group._id}}">{{group.name}}</a>
-</div>
-<div class="well">
-    <a ui-sref="newGroup">Add New Group</a>
+<div class="row text-center">
+    <div class="col-xs-6 col-xs-offset-3">
+        <h2>Your Groups</h2>
+        <div class="well" ng-repeat="group in groups">
+            <a href="group/{{group._id}}">{{group.name}}</a>
+        </div>
+        <div class="well">
+            <a ui-sref="newGroup">Add New Group</a>
+        </div>
+    </div>
 </div>

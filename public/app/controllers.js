@@ -107,7 +107,7 @@ angular.module('MainCtrls', ['MainServices'])
         console.log('in NewEventCtrl');
         $scope.createEvent = function() {
             Event.save($scope.event, function success(data) {
-                $location.path('/');
+                $location.path('/newVote');
             }, function error(data) {
                 Alerts.add('danger', 'You must be logged in to add')
                 console.log(data);
@@ -122,4 +122,23 @@ angular.module('MainCtrls', ['MainServices'])
         }, function error(data) {
             console.log(data);
         });
+        $scope.addToChoices = function() {
+            console.log($scope.newChoice)
+        }
+
+    }])
+    .controller('VoteShowCtrl', ['$scope', function($scope) {
+
+        $scope.addToChoices = function() {
+            console.log($scope.newChoice);
+            var newChoice = document.createElement('span');
+            newChoice.innerHTML = $scope.newChoice;
+            var newRadio = document.createElement('input');
+            newRadio.setAttribute('type', 'radio');
+            newRadio.setAttribute('name', 'choice');
+            document.getElementById('choices').appendChild(newRadio)
+            document.getElementById('choices').appendChild(newChoice)
+
+        }
+
     }]);
