@@ -1,16 +1,16 @@
 angular.module('MainCtrls', ['MainServices'])
-    .controller('HomeCtrl', ['$scope', 'Item', function($scope, Item) {
+    .controller('GroupsCtrl', ['$scope', 'Group', function($scope, Group) {
         $scope.items = [];
 
-        Item.query(function success(data) {
-            $scope.items = data;
+        Group.get(function success(data) {
+            $scope.group = data;
         }, function error(data) {
             console.log(data);
         });
 
-        $scope.deleteItem = function(id, itemsIdx) {
-            Item.delete({ id: id }, function success(data) {
-                $scope.items.splice(itemsIdx, 1);
+        $scope.deleteGroup = function(id, itemIdx) {
+            Group.delete({ id: id }, function success(data) {
+                $scope.groups.splice(itemsIdx, 1);
             }, function error(data) {
                 console.log(data);
             });
@@ -136,7 +136,7 @@ angular.module('MainCtrls', ['MainServices'])
         };
     }])
 
-.controller('GroupCtrl', ['$scope', '$stateParams', 'Group', function($scope, $stateParams, Group) {
+.controller('ShowGroupCtrl', ['$scope', '$stateParams', 'Group', function($scope, $stateParams, Group) {
     $scope.group = {};
 
     Group.get({ id: $stateParams.id }, function success(data) {
