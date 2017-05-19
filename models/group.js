@@ -6,12 +6,12 @@ var GroupsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    users: {
+    users: [{
         id: { type: Schema.Types.ObjectId, ref: 'User' },
         votes: Number,
         owner: Boolean
-    },
-    activities: { type: Schema.Types.ObjectId, ref: 'Event' }
+    }],
+    activities: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
 });
 
 module.exports = mongoose.model('Group', GroupsSchema);
