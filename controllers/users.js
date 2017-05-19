@@ -15,7 +15,7 @@ router.post('/', function(req, res) {
 router.route('/:id')
     // Route to return an individual user (profile show)
     .get(function(req, res) {
-        User.findById(req.params.id, function(err, user) {
+        User.find(function(err, user) {
             if (err) return res.status(500).send(err);
             res.send(user);
         });

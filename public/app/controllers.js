@@ -1,9 +1,11 @@
 angular.module('MainCtrls', ['MainServices'])
     .controller('GroupsCtrl', ['$scope', 'Group', function($scope, Group) {
-        $scope.items = [];
+        console.log('in GroupsCtrl');
+        $scope.group = [];
 
         Group.get(function success(data) {
             $scope.group = data;
+            console.log(data)
         }, function error(data) {
             console.log(data);
         });
@@ -109,13 +111,14 @@ angular.module('MainCtrls', ['MainServices'])
             });
         };
     }])
-    .controller('EventCtrl', ['$scope', '$stateParams', 'Event', function($scope, $stateParams, Event) {
+    .controller('EventCtrl', ['$scope', '$http', function($scope, $http) {
         $scope.event = {};
 
-        Event.get({ id: $stateParams.id }, function success(data) {
+        $http.get('/api/events').then(function success(data) {
             $scope.event = data;
+            console.log($scope.event);
         }, function error(data) {
-            console.log(data);
+            console.log('Error: ' + data);
         });
     }])
     .controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
@@ -128,6 +131,8 @@ angular.module('MainCtrls', ['MainServices'])
 
         $scope.createGroup = function() {
             Group.save($scope.group, function success(data) {
+                $scope.group = data;
+                console.log($scope.group.users);
                 $location.path('/');
             }, function error(data) {
                 Alerts.add('danger', 'You must be logged in to add')
@@ -136,12 +141,23 @@ angular.module('MainCtrls', ['MainServices'])
         };
     }])
 
-.controller('ShowGroupCtrl', ['$scope', '$stateParams', 'Group', function($scope, $stateParams, Group) {
+.controller('ShowGroupCtrl', ['$scope', '$http', function($scope, $http) {
+    console.log('in showgrpctrl');
     $scope.group = {};
 
-    Group.get({ id: $stateParams.id }, function success(data) {
+    $http.get('/api/groups/').then(function success(data) {
         $scope.group = data;
+        console.log($scope.group);
+
     }, function error(data) {
-        console.log(data);
+        console.log('Error: ' + data);
     });
+    $http.get('/api/users/:id').then(function success(data) {
+        $scope.user = data;
+        console.log($scope.user);
+
+    }, function error(data) {
+        console.log('Error: ' + data);
+    });
+
 }]);

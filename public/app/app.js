@@ -26,7 +26,8 @@ app.config([
             })
             .state('editUsers', {
                 url: '/editUsers',
-                templateUrl: 'app/views/editUsers.html'
+                templateUrl: 'app/views/editUsers.html',
+                controller: 'ShowGroupCtrl'
             })
             .state('newEvent', {
                 url: '/event/new',

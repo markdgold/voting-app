@@ -1,10 +1,10 @@
 angular.module('MainServices', ['ngResource'])
     .factory('Event', ['$resource', function($resource) {
-        return $resource('/api/events');
+        return $resource('/api/events/:id');
     }])
 
 .factory('Group', ['$resource', function($resource) {
-    return $resource('/api/groups/');
+    return $resource('/api/groups/:id');
 }])
 
 .factory('Auth', ['$window', function($window) {

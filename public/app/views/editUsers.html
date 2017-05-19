@@ -1,13 +1,7 @@
 <h4>Members in Group One</h4>
-<div class="well">
-    User 1 <span class="pull-right"><button>Remove</button></span>
-</div>
-<div class="well">
-    User 1 <span class="pull-right"><button>Remove</button></span>
-</div>
-<div class="well">
-    User 1 <span class="pull-right"><button>Remove</button></span>
-</div>
-<div class="well">
-    <button>Add Member</button>
+<div class="well" ng-repeat="(key, group) in group.data">
+    <h1>  {{group.name}}</h1>
+    <div ng-repeat="user in user.data">
+        <h1>{{ user.email }}</h1>
+    </div>
 </div>

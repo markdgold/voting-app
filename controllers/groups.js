@@ -8,12 +8,12 @@ router.route('/')
     // able to just render all the groups a user has based on the Group._id's
     // from their User schema.
 
-// .get(function(req, res) {
-//     Group.find(function(err, groups) {
-//         if (err) return res.status(500).send(err);
-//         res.send(groups);
-//     });
-// })
+.get(function(req, res) {
+    Group.find(function(err, groups) {
+        if (err) return res.status(500).send(err);
+        res.send(groups);
+    });
+})
 
 // Route to create a new Group
 .post(function(req, res) {
@@ -30,7 +30,7 @@ router.route('/')
     }, function(err, group) {
         if (err) return res.status(500).send(err);
 
-        User.findByIdAndUpdate(userId, { userGroups: [group._id] }, function(err) {
+        User.findByIdAndUpdate(userId, { $push: { userGroups: [group._id] } }, function(err) {
             if (err) return res.status(500).send(err);
         });
         res.send(group);
