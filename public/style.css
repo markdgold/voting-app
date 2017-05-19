@@ -1,0 +1,14 @@
+body {
+    background-color: darkgrey;
+    font-family: 'Josefin Slab', serif;
+}
+
+a,
+p {
+    font-size: 15pt;
+}
+
+span.btn a {
+    color: white;
+    text-decoration: none
+}

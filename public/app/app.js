@@ -12,7 +12,7 @@ app.config([
             .state('home', {
                 url: '/',
                 templateUrl: 'app/views/groups.html',
-                // controller: 'GroupCtrl'
+                controller: 'GroupsCtrl'
             })
             .state('newGroup', {
                 url: '/group/new',
@@ -22,7 +22,7 @@ app.config([
             .state('groupShow', {
                 url: '/group/:id',
                 templateUrl: 'app/views/groupShow.html'
-                    //,controller: 'GroupShowCtrl'
+                    //,                controller: 'GroupShowCtrl'
             })
             .state('editUsers', {
                 url: '/editUsers',
@@ -41,7 +41,11 @@ app.config([
             .state('voteShow', {
                 url: '/vote/:id',
                 templateUrl: 'app/views/voteShow.html',
-                //, controller: VoteShowCtrl
+                controller: 'VoteShowCtrl'
+            })
+            .state('newVoteShow', {
+                url: '/newVote',
+                templateUrl: 'app/views/newVote.html'
             })
             .state('eventShow', {
                 url: '/event/:id',

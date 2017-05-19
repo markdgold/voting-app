@@ -1,48 +1,54 @@
 angular.module('MainCtrls', ['MainServices'])
     .controller('GroupsCtrl', ['$scope', 'Group', function($scope, Group) {
-        $scope.items = [];
-
-        Group.get(function success(data) {
-            $scope.group = data;
+        console.log('in GroupsCtrl');
+        $scope.groups = [];
+        //get all groups and delete a group. Probably don't need
+        Group.query(function success(data) {
+            console.log('success', data)
+            $scope.groups = data;
         }, function error(data) {
-            console.log(data);
+            console.log('fail', data);
         });
 
-        $scope.deleteGroup = function(id, itemIdx) {
-            Group.delete({ id: id }, function success(data) {
-                $scope.groups.splice(itemsIdx, 1);
-            }, function error(data) {
-                console.log(data);
-            });
-        }
-    }])
-    .controller('ShowCtrl', ['$scope', '$stateParams', 'Item', function($scope, $stateParams, Item) {
-        $scope.item = {};
+        // $scope.deleteGroup = function(id, groupsIdx) {
+        //     Group.delete({ id: id }, function success(data) {
+        //         $scope.groups.splice(groupsIdx, 1);
+        //     }, function error(data) {
+        //         console.log(data);
+        //     });
+        // }
+        //     Group.get({ id: "591e32fdb6846214d1a4625e" },
+        //         function success(data) {
+        //             console.log(data.userGroups);
+        //         },
+        //         function error(data) {
+        //             console.log('error', data);
+        //         });
 
-        Item.get({ id: $stateParams.id }, function success(data) {
-            $scope.item = data;
-        }, function error(data) {
-            console.log(data);
-        });
     }])
-    .controller('NewCtrl', ['$scope', '$location', 'Item', 'Alerts', function($scope, $location, Item, Alerts) {
-        console.log('in NewCtrl')
-        $scope.item = {
-            title: '',
-            description: '',
-            image: ''
-        };
-
-        $scope.createItem = function() {
-            Item.save($scope.item, function success(data) {
+    .controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
+        console.log('in NewGroupCtrl');
+        $scope.createGroup = function() {
+            Group.save($scope.group, function success(data) {
                 $location.path('/');
             }, function error(data) {
                 Alerts.add('danger', 'You must be logged in to add')
                 console.log(data);
             });
-        }
+        };
     }])
-    .controller('NavCtrl', ['$scope', 'Auth', '$state', 'Alerts', function($scope, Auth, $state, Alerts) {
+    .controller('GroupShowCtrl', ['$scope', '$stateParams', 'Group', function($scope, $stateParams, Group) {
+        $scope.group = {};
+
+        Group.get({ id: $stateParams.id }, function success(data) {
+            $scope.group = data;
+        }, function error(data) {
+            console.log(data);
+        });
+    }])
+
+
+.controller('NavCtrl', ['$scope', 'Auth', '$state', 'Alerts', function($scope, Auth, $state, Alerts) {
         $scope.Auth = Auth;
         $scope.logout = function() {
             Auth.removeToken();
@@ -94,22 +100,19 @@ angular.module('MainCtrls', ['MainServices'])
     .controller('AlertCtrl', ['$scope', 'Alerts', function($scope, Alerts) {
         $scope.Alerts = Alerts;
     }])
-    .controller('NewEventCtrl', ['$scope', '$location', '$http', '$stateParams', 'Alerts', function($scope, $location, $http, $stateParams, Alerts) {
+    .controller('NewEventCtrl', ['$scope', '$location', 'Event', 'Alerts', function($scope, $location, Event, Alerts) {
         console.log('in NewEventCtrl');
-        $scope.event = {
-
-        };
-
         $scope.createEvent = function() {
-            $http.post('/api/groups/' + $stateParams.id + '/new', $scope.event).then(function success(res) {
-                Alerts.add('success', 'Event created!');
-                $location.path('/');
-            }, function error(res) {
-                Alerts.add('danger', 'Something went wrong.  Event not created');
+            Event.save($scope.event, function success(data) {
+                $location.path('/newVote');
+            }, function error(data) {
+                Alerts.add('danger', 'You must be logged in to add')
+                console.log(data);
+
             });
         };
     }])
-    .controller('EventCtrl', ['$scope', '$stateParams', 'Event', function($scope, $stateParams, Event) {
+    .controller('EventShowCtrl', ['$scope', '$stateParams', 'Event', function($scope, $stateParams, Event) {
         $scope.event = {};
 
         Event.get({ id: $stateParams.id }, function success(data) {
@@ -117,31 +120,22 @@ angular.module('MainCtrls', ['MainServices'])
         }, function error(data) {
             console.log(data);
         });
+        $scope.addToChoices = function() {
+            console.log($scope.newChoice)
+        }
+
     }])
-    .controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
-        console.log('in NewGroupCtrl');
-        $scope.group = {
-            name: '',
-            description: '',
-            image: ''
-        };
+    .controller('VoteShowCtrl', ['$scope', function($scope) {
+        $scope.addToChoices = function() {
+            console.log($scope.newChoice);
+            var newChoice = document.createElement('span');
+            newChoice.innerHTML = $scope.newChoice;
+            var newRadio = document.createElement('input');
+            newRadio.setAttribute('type', 'radio');
+            newRadio.setAttribute('name', 'choice');
+            document.getElementById('choices').appendChild(newRadio)
+            document.getElementById('choices').appendChild(newChoice)
 
-        $scope.createGroup = function() {
-            Group.save($scope.group, function success(data) {
-                $location.path('/');
-            }, function error(data) {
-                Alerts.add('danger', 'You must be logged in to add')
-                console.log(data);
-            });
-        };
-    }])
+        }
 
-.controller('ShowGroupCtrl', ['$scope', '$stateParams', 'Group', function($scope, $stateParams, Group) {
-    $scope.group = {};
-
-    Group.get({ id: $stateParams.id }, function success(data) {
-        $scope.group = data;
-    }, function error(data) {
-        console.log(data);
-    });
-}]);
+    }]);

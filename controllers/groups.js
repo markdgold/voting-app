@@ -5,6 +5,16 @@ var User = require('../models/user');
 var router = express.Router();
 
 router.route('/')
+    // Pretty sure we don't need a route to get ALL groups.  We should be
+    // able to just render all the groups a user has based on the Group._id's
+    // from their User schema.
+
+.get(function(req, res) {
+        Group.find(function(err, groups) {
+            if (err) return res.status(500).send(err);
+            res.send(groups);
+        });
+    })
     // Route to create a new group and add that group to the current user
     // userGroups
     .post(function(req, res) {
@@ -25,6 +35,14 @@ router.route('/')
             res.send(group);
         });
     });
+
+// Route to create a new Group
+// .post(function(req, res) {
+//     Group.create(req.body, function(err, group) {
+//         if (err) return res.status(500).send(err);
+//         res.send(group);
+//     });
+// });
 
 router.route('/:id')
     // Route to return an individual Group
