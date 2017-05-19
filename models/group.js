@@ -11,7 +11,7 @@ var GroupsSchema = mongoose.Schema({
         votes: Number,
         owner: Boolean
     }],
-    activities: [{ type: Schema.Types.ObjectId, ref: 'Events' }]
+    activities: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
 });
 
 module.exports = mongoose.model('Group', GroupsSchema);
