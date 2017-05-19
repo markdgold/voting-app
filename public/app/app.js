@@ -11,8 +11,8 @@ app.config([
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'app/views/groups.html'
-                    //,controller: 'GroupCtrl'
+                templateUrl: 'app/views/groups.html',
+                controller: 'GroupsCtrl'
             })
             .state('newGroup', {
                 url: '/group/new',
@@ -21,8 +21,8 @@ app.config([
             })
             .state('groupShow', {
                 url: '/group/:id',
-                templateUrl: 'app/views/groupShow.html'
-                    //,controller: 'GroupShowCtrl'
+                templateUrl: 'app/views/groupShow.html',
+                controller: 'GroupShowCtrl'
             })
             .state('editUsers', {
                 url: '/editUsers',
