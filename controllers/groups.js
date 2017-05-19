@@ -1,6 +1,7 @@
 var express = require('express');
 var Group = require('../models/group');
 var EventDb = require('../models/event');
+var User = require('../models/user');
 var router = express.Router();
 
 router.route('/')
@@ -9,20 +10,38 @@ router.route('/')
     // from their User schema.
 
 .get(function(req, res) {
-    Group.find(function(err, groups) {
-        if (err) return res.status(500).send(err);
-        res.send(groups);
-    });
-})
-
+        Group.find(function(err, groups) {
+            if (err) return res.status(500).send(err);
+            res.send(groups);
+        });
+    })
+    .post(function(req, res) {
+        var userId = req.user.id;
+        var groupName = req.body.name;
+        Group.create({
+            name: groupName,
+            users: {
+                id: userId,
+                votes: 100,
+                owner: true,
+            }
+        }, function(err, group) {
+            if (err) return res.status(500).send(err);
+            User.findByIdAndUpdate(userId, { $push: { userGroups: [group._id] } }, function(err) {
+                if (err) return res.status(500).send(err);
+            });
+            res.send(group);
+        });
+    })
 
 // Route to create a new Group
-.post(function(req, res) {
-    Group.create(req.body, function(err, group) {
-        if (err) return res.status(500).send(err);
-        res.send(group);
-    });
-});
+// .post(function(req, res) {
+//     Group.create(req.body, function(err, group) {
+//         if (err) return res.status(500).send(err);
+//         res.send(group);
+//     });
+// });
+
 
 router.route('/:id')
     // Route to return an individual Group

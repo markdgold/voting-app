@@ -27,12 +27,10 @@ angular.module('MainCtrls', ['MainServices'])
         //         });
 
     }])
-
-.controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
+    .controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
         console.log('in NewGroupCtrl');
         $scope.createGroup = function() {
             Group.save($scope.group, function success(data) {
-                console.log($scope.group)
                 $location.path('/');
             }, function error(data) {
                 Alerts.add('danger', 'You must be logged in to add')
