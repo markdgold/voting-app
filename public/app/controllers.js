@@ -94,18 +94,18 @@ angular.module('MainCtrls', ['MainServices'])
     .controller('AlertCtrl', ['$scope', 'Alerts', function($scope, Alerts) {
         $scope.Alerts = Alerts;
     }])
-    .controller('NewEventCtrl', ['$scope', '$location', 'Event', 'Alerts', function($scope, $location, Event, Alerts) {
-        console.log('in NewEventCtrl')
+    .controller('NewEventCtrl', ['$scope', '$location', '$http', '$stateParams', 'Alerts', function($scope, $location, $http, $stateParams, Alerts) {
+        console.log('in NewEventCtrl');
         $scope.event = {
 
         };
 
         $scope.createEvent = function() {
-            Event.save($scope.event, function success(data) {
+            $http.post('/api/groups/' + $stateParams.id + '/new', $scope.event).then(function success(res) {
+                Alerts.add('success', 'Event created!');
                 $location.path('/');
-            }, function error(data) {
-                Alerts.add('danger', 'You must be logged in to add')
-                console.log(data);
+            }, function error(res) {
+                Alerts.add('danger', 'Something went wrong.  Event not created');
             });
         };
     }])
