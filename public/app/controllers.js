@@ -1,8 +1,8 @@
 angular.module('MainCtrls', ['MainServices'])
     .controller('GroupsCtrl', ['$scope', 'Group', function($scope, Group) {
-        console.log('in GroupsCtrl')
+        console.log('in GroupsCtrl');
         $scope.groups = [];
-
+        //get all groups and delete a group. Probably don't need
         Group.query(function success(data) {
             console.log('success', data)
             $scope.groups = data;
@@ -10,15 +10,25 @@ angular.module('MainCtrls', ['MainServices'])
             console.log('fail', data);
         });
 
-        $scope.deleteGroup = function(id, groupsIdx) {
-            Group.delete({ id: id }, function success(data) {
-                $scope.groups.splice(groupsIdx, 1);
-            }, function error(data) {
-                console.log(data);
-            });
-        }
+
+        // $scope.deleteGroup = function(id, groupsIdx) {
+        //     Group.delete({ id: id }, function success(data) {
+        //         $scope.groups.splice(groupsIdx, 1);
+        //     }, function error(data) {
+        //         console.log(data);
+        //     });
+        // }
+        //     Group.get({ id: "591e32fdb6846214d1a4625e" },
+        //         function success(data) {
+        //             console.log(data.userGroups);
+        //         },
+        //         function error(data) {
+        //             console.log('error', data);
+        //         });
+
     }])
-    .controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
+
+.controller('NewGroupCtrl', ['$scope', '$location', 'Group', 'Alerts', function($scope, $location, Group, Alerts) {
         console.log('in NewGroupCtrl');
         $scope.createGroup = function() {
             Group.save($scope.group, function success(data) {
@@ -39,7 +49,9 @@ angular.module('MainCtrls', ['MainServices'])
             console.log(data);
         });
     }])
-    .controller('NavCtrl', ['$scope', 'Auth', '$state', 'Alerts', function($scope, Auth, $state, Alerts) {
+
+
+.controller('NavCtrl', ['$scope', 'Auth', '$state', 'Alerts', function($scope, Auth, $state, Alerts) {
         $scope.Auth = Auth;
         $scope.logout = function() {
             Auth.removeToken();

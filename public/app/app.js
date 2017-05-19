@@ -21,8 +21,8 @@ app.config([
             })
             .state('groupShow', {
                 url: '/group/:id',
-                templateUrl: 'app/views/groupShow.html',
-                controller: 'GroupShowCtrl'
+                templateUrl: 'app/views/groupShow.html'
+                    //,                controller: 'GroupShowCtrl'
             })
             .state('editUsers', {
                 url: '/editUsers',

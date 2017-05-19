@@ -31,7 +31,8 @@ UserSchema.set('toJSON', {
         var returnJson = {
             id: ret._id,
             email: ret.email,
-            name: ret.name
+            name: ret.name,
+            userGroups: ret.userGroups
         };
         return returnJson;
     }
