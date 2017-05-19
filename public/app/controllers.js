@@ -10,7 +10,6 @@ angular.module('MainCtrls', ['MainServices'])
             console.log('fail', data);
         });
 
-
         // $scope.deleteGroup = function(id, groupsIdx) {
         //     Group.delete({ id: id }, function success(data) {
         //         $scope.groups.splice(groupsIdx, 1);
@@ -109,6 +108,7 @@ angular.module('MainCtrls', ['MainServices'])
             }, function error(data) {
                 Alerts.add('danger', 'You must be logged in to add')
                 console.log(data);
+
             });
         };
     }])
@@ -126,7 +126,6 @@ angular.module('MainCtrls', ['MainServices'])
 
     }])
     .controller('VoteShowCtrl', ['$scope', function($scope) {
-
         $scope.addToChoices = function() {
             console.log($scope.newChoice);
             var newChoice = document.createElement('span');

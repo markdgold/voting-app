@@ -29,7 +29,7 @@ app.config([
                 templateUrl: 'app/views/editUsers.html'
             })
             .state('newEvent', {
-                url: '/event/new',
+                url: '/group/:id/new',
                 templateUrl: 'app/views/newEvent.html',
                 controller: 'NewEventCtrl'
             })
